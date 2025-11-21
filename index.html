@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive GST Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>GST Calculator</h1>
+
+        <div class="input-group">
+            <label for="price">Price Amount</label>
+            <input type="number" step="0.01" id="price" placeholder="Enter Base or Gross Price" required>
+        </div>
+
+        <div class="input-group">
+            <label for="rate">GST Rate (%)</label>
+            <div class="controls rate-presets">
+                <button onclick="document.getElementById('rate').value = 5;">5%</button>
+                <button onclick="document.getElementById('rate').value = 12;">12%</button>
+                <button onclick="document.getElementById('rate').value = 18;">18%</button>
+                <button onclick="document.getElementById('rate').value = 28;">28%</button>
+            </div>
+            <input type="number" id="rate" placeholder="e.g., 18" required>
+        </div>
+
+        <div class="input-group">
+            <label for="transactionType">Transaction Type</label>
+            <select id="transactionType">
+                <option value="intra">Intra-State (CGST + SGST)</option>
+                <option value="inter">Inter-State (IGST)</option>
+            </select>
+        </div>
+
+        <div class="controls action-buttons">
+            <button onclick="calculateGST('add')">✅ Add GST (Net to Gross)</button>
+            <button onclick="calculateGST('remove')">➖ Remove GST (Gross to Net)</button>
+        </div>
+
+        <hr>
+
+        <h2>Calculation Results</h2>
+        <div class="output-group">
+            <div class="tax-breakdown">
+                <p><strong>Base Price (Net):</strong> <span id="basePrice">0.00</span></p>
+                <p><strong>Total GST Amount:</strong> <span id="gstAmount">0.00</span></p>
+                <div>CGST: <span id="cgstAmount">0.00</span></div>
+                <div>SGST: <span id="sgstAmount">0.00</span></div>
+                <div>IGST: <span id="igstAmount">0.00</span></div>
+                <p class="final-price"><strong>Gross Price (Final):</strong> <span id="grossPrice">0.00</span></p>
+            </div>
+        </div>
+
+        <h2>📜 Calculation History</h2>
+        <div id="historyList">
+            <p>No transactions saved yet.</p>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
